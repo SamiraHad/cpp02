@@ -6,32 +6,30 @@
 /*   By: hsamira <hsamira@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 17:57:53 by hsamira           #+#    #+#             */
-/*   Updated: 2026/02/10 15:00:50 by hsamira          ###   ########.fr       */
+/*   Updated: 2026/02/12 12:11:00 by hsamira          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-_fractionalBits = 8;
-
-Fixed::Fixed()
+Fixed::Fixed():_value( 0 )
 {
-    _value = 0;
     std::cout << "Default constructor called" << std::endl;
     
 }
 
-Fixed::Fixed(const Fixed& other)
+Fixed::Fixed( const Fixed& other )
 {
     std::cout << "Copy constructor called" << std::endl;
+    this->_value = other.getRawBits();
 }
 
-Fixed& operator=(const Fixed& other)
+Fixed& Fixed::operator=( const Fixed& other )
 {
     std::cout << "Copy assignment operator called" << std::endl;
     if(this != &other)
-        this->_value = other._value;
-    return(*this);
+        this->_value = other.getRawBits();
+    return *this;
 }
 
 Fixed::~Fixed()
@@ -41,7 +39,7 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits( void ) const
 {
-  std::cout << "getRawBits member function called" << std::cout;
+  std::cout << "getRawBits member function called" << std::endl;
   return(this->_value);
 }
 
